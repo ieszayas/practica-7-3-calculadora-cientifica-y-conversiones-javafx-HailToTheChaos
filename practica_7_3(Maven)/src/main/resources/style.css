@@ -1,0 +1,33 @@
+.numeros {
+    -fx-background-color: aquamarine;  
+}
+
+.operaciones {
+    -fx-background-color: #4287f5;
+}
+
+.simbolos {
+    -fx-background-color: #42f557;
+}
+
+.borrar {
+    -fx-background-color: #d742f5;
+}
+
+.igual {
+    -fx-background-color: #42f59e;
+}
+
+.numeros, .operaciones, .simbolos, .borrar, .igual {
+    -fx-border-radius: 10%;
+    -fx-background-radius: 20%;
+    -fx-font-weight: bold;
+}
+
+#resultado {
+    -fx-background-color: white;
+}
+
+#fondo {
+    -fx-background-color: rgb(60, 161, 238);
+}
