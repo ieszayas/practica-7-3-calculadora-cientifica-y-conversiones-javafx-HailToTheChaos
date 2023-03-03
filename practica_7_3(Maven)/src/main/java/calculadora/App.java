@@ -18,9 +18,9 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"));
+        scene = new Scene(loadFXML("/Vista/primary"));
         stage.getIcons().add(new Image(App.class.getResource("/Vista/icon.png").toExternalForm()));
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/Vista/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }

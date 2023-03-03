@@ -50,7 +50,6 @@ public class Calculos {
                     resultado = 0.0;
                     break;
             }
-
             memoria = String.valueOf(resultado);
         } catch (NumberFormatException ex) {
 
