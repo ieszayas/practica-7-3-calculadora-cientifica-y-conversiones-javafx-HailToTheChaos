@@ -5,6 +5,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Scanner;
+import javafx.collections.ObservableList;
 import org.json.JSONObject;
 
 /**
@@ -13,23 +14,40 @@ import org.json.JSONObject;
  */
 public class Calculos {
 
-    private HashMap<String, Double> valoresLongitud;
-    private static String memoria = "0";
+    private HashMap<String, Double> unidadesLongitud;
+    HashMap<String, Double> unidadesTiempo;
+    private String memoria = "0";
+    private String memoriaExp;
+    private ModeloHistorial historial;
 
     public Calculos() {
-        valoresLongitud = new HashMap<>();
-        valoresLongitud.put("mm", 0.001);
-        valoresLongitud.put("cm", 0.01);
-        valoresLongitud.put("dm", 0.1);
-        valoresLongitud.put("dm", 0.1);
-        valoresLongitud.put("m", 1.0);
-        valoresLongitud.put("km", 1000.0);
+        unidadesLongitud = new HashMap<>();
+        unidadesLongitud.put("mm", 0.001);
+        unidadesLongitud.put("cm", 0.01);
+        unidadesLongitud.put("dm", 0.1);
+        unidadesLongitud.put("dm", 0.1);
+        unidadesLongitud.put("m", 1.0);
+        unidadesLongitud.put("km", 1000.0);
+
+        unidadesTiempo = new HashMap<>();
+        unidadesTiempo.put("milisegundos", 1.0);
+        unidadesTiempo.put("segundos", 1000.0);
+        unidadesTiempo.put("minutos", 60000.0);
+        unidadesTiempo.put("horas", 3600000.0);
+        unidadesTiempo.put("dias", 86400000.0);
+        unidadesTiempo.put("semanas", 604800000.0);
+        unidadesTiempo.put("años", 31557600000.0);
+
+        historial = new ModeloHistorial();
     }
 
-    public static String calculo(String numero1, String operacion) {
+    public String calculo(String numero1, String operacion) {        
+        Double num1;
+        Double numMemoria;
+        String res;
         try {
-            Double num1 = Double.valueOf(numero1);
-            Double numMemoria = Double.valueOf(memoria);
+            num1 = Double.valueOf(numero1);
+            numMemoria = Double.valueOf(memoria);
 
             Double resultado;
 
@@ -50,14 +68,17 @@ public class Calculos {
                     resultado = 0.0;
                     break;
             }
-            memoria = String.valueOf(resultado);
+            res = String.valueOf(resultado);
+
+            historial.guardarHistorial(memoria, numero1, operacion, res);
+            memoria = res;
         } catch (NumberFormatException ex) {
 
         }
         return memoria;
     }
 
-    public static String calculoTrig(String numero, String operacion) {
+    public String calculoTrig(String numero, String operacion) {
         Double num = Double.valueOf(numero);
 
         Double resultado = 0.0;
@@ -76,12 +97,12 @@ public class Calculos {
         return memoria = String.valueOf(resultado);
     }
 
-    public static String calcularPorcentaje(String numero) {
+    public String calcularPorcentaje(String numero) {
         Double num1 = Double.valueOf(numero);
         return String.valueOf(num1 / 100);
     }
 
-    public static boolean isNumeric(String entrada) {
+    public boolean isNumeric(String entrada) {
         try {
             Integer.valueOf(entrada);
             return true;
@@ -98,33 +119,35 @@ public class Calculos {
                 resultado = calcularDivisa(valor, origen, destino);
                 break;
             case "Longitud":
-                resultado = calcularLongitud(valor, origen, destino);
+                resultado = conversion(valor, origen, destino, unidadesLongitud);
+                break;
+            case "Tiempo":
+                resultado = conversion(valor, origen, destino, unidadesTiempo);
                 break;
         }
+
+        historial.guardarHistorial(modo, valor, origen, destino, resultado);
         return resultado;
     }
 
-    public static String getMemoria() {
+    public String getMemoria() {
         return memoria;
     }
 
-    public static void setMemoria(String memoria) {
-        Calculos.memoria = memoria;
+    public void setMemoria(String memoria) {
+        this.memoria = memoria;
     }
 
-    private String calcularLongitud(String valor, String origen, String destino) {
-        String resultado = "";
-        try {
-            Double num = Double.valueOf(valor);
-            num = num * valoresLongitud.get(origen) / valoresLongitud.get(destino);
-            resultado = String.valueOf(num);
-        } catch (NumberFormatException ex) {
-
-        }
-        return resultado;
-    }
-
+    /**
+     * Método para calcular las divisas
+     *
+     * @param valor
+     * @param origen
+     * @param destino
+     * @return resultado
+     */
     private String calcularDivisa(String valor, String origen, String destino) {
+
         String json = requestAPI(origen);
         Double valorDestino = divisa(json, destino);
         Double valorACalcular = Double.valueOf(valor);
@@ -132,6 +155,13 @@ public class Calculos {
         return String.valueOf(valorACalcular * valorDestino);
     }
 
+    /**
+     * Método que obtiene el valor de la divisa de destino
+     *
+     * @param json
+     * @param destino
+     * @return solucion
+     */
     public Double divisa(String json, String destino) {
         JSONObject obj = new JSONObject(json);
         String result = obj.getJSONObject("conversion_rates").optString(destino);
@@ -140,6 +170,12 @@ public class Calculos {
         return solucion;
     }
 
+    /**
+     * Método que hace la request a la API de exchangerate (cambio de divisa)
+     *
+     * @param origen
+     * @return json
+     */
     private String requestAPI(String origen) {
         String json = "";
         Scanner sc = null;
@@ -166,6 +202,49 @@ public class Calculos {
             sc.close();
         }
         return json;
+    }
+
+    public void setMemoriaExp(String memoriaEx) {
+        memoriaExp = memoriaEx;
+    }
+
+    /**
+     * Método que hace el cálculo de exponenciales
+     *
+     * @param exponente
+     * @return resulatdo
+     */
+    public String calculoExp(String exponente) {
+        Double num1 = Double.valueOf(memoriaExp);
+        Double num2 = Double.valueOf(exponente);
+
+        return String.valueOf(Math.pow(num1, num2));
+    }
+
+    /**
+     * Método que hace las conversiones
+     *
+     * @param valor
+     * @param origen
+     * @param destino
+     * @param unidades
+     * @return resultado
+     */
+    private String conversion(String valor, String origen, String destino, HashMap<String, Double> unidades) {
+        Double valorEntrada = Double.valueOf(valor);
+        Double factorOrigen = unidades.get(origen);
+        Double factorDestino = unidades.get(destino);
+
+        // Convertir la cantidad a milisegundos y luego a la unidad de destino
+        return String.valueOf((valorEntrada * factorOrigen) / factorDestino);
+    }
+
+    public void borrarHistorial() {
+        historial.borrarHistorial();
+    }
+
+    public ObservableList<String> getHistorial(String tipo) {
+        return historial.getHistorial(tipo);
     }
 
 }

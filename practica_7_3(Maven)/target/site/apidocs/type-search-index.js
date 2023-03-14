@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"Controlador","l":"App"},{"p":"Controlador","l":"HistorialController"},{"p":"Controlador","l":"OpcionesDivisaController"},{"p":"Controlador","l":"PrimaryController"},{"p":"Controlador","l":"SecondaryController"}];updateSearchResults();

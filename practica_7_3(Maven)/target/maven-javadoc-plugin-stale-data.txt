@@ -1,0 +1,52 @@
+@options
+@packages
+@argfile
+--class-path
+'C:/Users/Jaime/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2.jar;C:/Users/Jaime/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2.jar;C:/Users/Jaime/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2.jar;C:/Users/Jaime/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13.jar'
+--module-path
+'C:/Users/Jaime/.m2/repository/org/openjfx/javafx-base/17.0.2/javafx-base-17.0.2-win.jar;C:/Users/Jaime/.m2/repository/org/openjfx/javafx-graphics/17.0.2/javafx-graphics-17.0.2-win.jar;E:/CLASE/Desarrollo de Interfaces/Practicas/practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos/practica_7_3(Maven)/target/classes;C:/Users/Jaime/.m2/repository/org/json/json/20230227/json-20230227.jar;C:/Users/Jaime/.m2/repository/org/openjfx/javafx-controls/17.0.2/javafx-controls-17.0.2-win.jar;C:/Users/Jaime/.m2/repository/org/openjfx/javafx-fxml/13/javafx-fxml-13-win.jar'
+--patch-module
+calculadora='E:/CLASE/Desarrollo de Interfaces/Practicas/practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos/practica_7_3(Maven)/src/main/java'
+-encoding
+'UTF-8'
+-protected
+-source
+'19'
+--module-source-path
+'E:/CLASE/Desarrollo de Interfaces/Practicas/practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos/practica_7_3(Maven)/target/site/apidocs/src'
+-author
+-bottom
+'Copyright &#169; 2023. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'E:/CLASE/Desarrollo de Interfaces/Practicas/practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos/practica_7_3(Maven)/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'practica_7_3 1.0-SNAPSHOT API'
+-use
+-version
+-windowtitle
+'practica_7_3 1.0-SNAPSHOT API'
+Controlador
+'E:/CLASE/Desarrollo de Interfaces/Practicas/practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos/practica_7_3(Maven)/src/main/java/module-info.java'
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\allclasses-index.html = 1678745462633
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\allpackages-index.html = 1678745462636
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\copy.svg = 1678745462683
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\element-list = 1678745462494
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\help-doc.html = 1678745462677
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\index-all.html = 1678745462662
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\index.html = 1678745462671
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\jquery-ui.overrides.css = 1678745462699
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\member-search-index.js = 1678745462643
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\module-search-index.js = 1678745462639
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\overview-tree.html = 1678745462613
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\package-search-index.js = 1678745462640
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\script.js = 1678745462682
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\search-page.js = 1678745462688
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\search.html = 1678745462667
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\search.js = 1678745462686
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\stylesheet.css = 1678745462680
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\tag-search-index.js = 1678745462645
+E:\CLASE\Desarrollo de Interfaces\Practicas\practica-7-3-calculadora-cientifica-y-conversiones-javafx-HailToTheChaos\practica_7_3(Maven)\target\site\apidocs\type-search-index.js = 1678745462642

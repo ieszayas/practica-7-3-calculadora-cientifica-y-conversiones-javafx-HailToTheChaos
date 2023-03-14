@@ -6,8 +6,8 @@
     <version>1.0-SNAPSHOT</version>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.source>19</maven.compiler.source>
+        <maven.compiler.target>19</maven.compiler.target>
     </properties>
     <dependencies>
         <dependency>
@@ -28,21 +28,13 @@
         </dependency>
     </dependencies>
     <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-                <configuration>
-                    <release>11</release>
-                </configuration>
-            </plugin>
+        <plugins>            
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.4</version>
+                <version>0.0.8</version>
                 <configuration>
-                    <mainClass>calculadora.App</mainClass>
+                    <mainClass>Controlador.App</mainClass>
                 </configuration>
                 <executions>
                     <execution>
@@ -84,35 +76,34 @@
                     </execution>
                 </executions>
             </plugin>
+             
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>3.4.1</version>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>                
+            </plugin>
+ 
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <executions>
                     <execution>
                         <phase>package</phase>
                         <goals>
-                            <goal>shade</goal>
+                            <goal>single</goal>
                         </goals>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <filters>
-                                <filter>
-                                    <artifact>*:*</artifact>
-                                    <excludes>
-                                        <exclude>META-INF/*.SF</exclude>
-                                        <exclude>META-INF/*.DSA</exclude>
-                                        <exclude>META-INF/*.RSA</exclude>
-                                        <exclude>.settings/**</exclude>
-                                        <exclude>*.classpath</exclude>
-                                        <exclude>*.project</exclude>
-                                        <exclude>*.txt</exclude>
-                                    </excludes>
-                                </filter>
-                            </filters>
-                        </configuration>
                     </execution>
                 </executions>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>Controlador.App</mainClass>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.akathist.maven.plugins.launch4j</groupId>
@@ -120,43 +111,47 @@
                 <version>2.3.2</version>
                 <executions>
                     <execution>
-                        <id>l4j-gui</id>
+                        <id>l4j-clui</id>
                         <phase>package</phase>
                         <goals>
                             <goal>launch4j</goal>
                         </goals>
                         <configuration>
+ 
+                            <!--indicar gui (javaw) o console (java) -->
                             <headerType>gui</headerType>
-                            <outfile>target/Project.exe</outfile>
-                            <jar>target/${project.artifactId}-${project.version}.jar</jar>
-                            <!-- if <dontWrapJar>true</dontWrapJar> change to this conf <jar>${project.artifactId}-${project.version}.jar</jar> -->
-                            <dontWrapJar>false</dontWrapJar>
-                            <errTitle>Error in launch4j plugin</errTitle>
-                            <classPath>
-                                <mainClass>path.Main</mainClass>
-                            </classPath>                            
-                            <jre>
-                                <minVersion>1.5.0</minVersion>
-                                <maxVersion>1.6.0</maxVersion>
-                                <initialHeapSize>512</initialHeapSize>
-                                <maxHeapSize>1024</maxHeapSize>
+                            <outfile>${project.build.directory}/Calculadora.exe</outfile>
+ 
+                            <!-- icono del ejecutable -->
+                            <icon>src/main/resources/Vista/icon.ico</icon>
+                            <!-- impide ejecutar más de una instancia a la vez -->
+                            <singleInstance>
+                                <mutexName>Calculadora</mutexName>
+                            </singleInstance>
+ 
+                            <jre><!-- versión mínima requerida de java -->
+                                <minVersion>1.8.0_361</minVersion>
+                                <path>C:\Program Files\Java\jre1.8.0_361</path>
                             </jre>
+                         
                             <versionInfo>
                                 <fileVersion>1.0.0.0</fileVersion>
-                                <txtFileVersion>1.0.0.0</txtFileVersion>
-                                <fileDescription>des</fileDescription>
-                                <copyright>Copyright (c) 2014 </copyright>
-                                <companyName>comp</companyName>
-                                <productVersion>3.0.0.0</productVersion>
-                                <txtProductVersion>${project.version}</txtProductVersion>
-                                <productName>Project</productName>
-                                <internalName>Project</internalName>
-                                <originalFilename>Project.exe</originalFilename>
+                                <txtFileVersion>versión 1.0</txtFileVersion>
+                                <fileDescription>demo de launch4j</fileDescription>
+                                <copyright>danielme.com</copyright>
+                                <productVersion>1.0.0.0</productVersion>
+                                <txtProductVersion>demo de launch4j</txtProductVersion>
+                                <productName>demo de launch4j</productName>                             
+                                <internalName>Calculadora</internalName>
+                                <originalFilename>Calculadora.exe</originalFilename>
                             </versionInfo>
+ 
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>          
+            </plugin>
+                                
+                            
         </plugins>
     </build>
 </project>

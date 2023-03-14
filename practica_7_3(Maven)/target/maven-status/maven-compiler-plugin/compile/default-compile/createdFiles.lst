@@ -1,5 +1,9 @@
-calculadora\PrimaryController.class
+Controlador\App.class
+Modelo\ModeloHistorial.class
+Controlador\HistorialController.class
+Controlador\SecondaryController.class
 Modelo\Calculos.class
 module-info.class
-calculadora\SecondaryController.class
-calculadora\App.class
+Controlador\PrimaryController$1.class
+Controlador\OpcionesDivisaController.class
+Controlador\PrimaryController.class
