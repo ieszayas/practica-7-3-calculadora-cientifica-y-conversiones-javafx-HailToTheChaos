@@ -20,6 +20,9 @@ public class Calculos {
     private String memoriaExp;
     private ModeloHistorial historial;
 
+    /**
+     * Constructor del objeto Calculos
+     */
     public Calculos() {
         unidadesLongitud = new HashMap<>();
         unidadesLongitud.put("mm", 0.001);
@@ -41,16 +44,24 @@ public class Calculos {
         historial = new ModeloHistorial();
     }
 
+    /**
+     * Método que hace los cálculos
+     * @param numero1
+     * @param operacion
+     * @return 
+     */
     public String calculo(String numero1, String operacion) {        
         Double num1;
         Double numMemoria;
         String res;
         try {
+            //Parseo el String
             num1 = Double.valueOf(numero1);
             numMemoria = Double.valueOf(memoria);
 
             Double resultado;
 
+            //hago los cálculos
             switch (operacion) {
                 case "+":
                     resultado = numMemoria + num1;
@@ -68,16 +79,25 @@ public class Calculos {
                     resultado = 0.0;
                     break;
             }
+            //Devuelvo el valor en String
             res = String.valueOf(resultado);
 
+            //Guardo en el historial
             historial.guardarHistorial(memoria, numero1, operacion, res);
             memoria = res;
         } catch (NumberFormatException ex) {
 
         }
+        //Devuelvo resultado
         return memoria;
     }
 
+    /**
+     * Método para hacer cálculos trigonométricos
+     * @param numero
+     * @param operacion
+     * @return resultado
+     */
     public String calculoTrig(String numero, String operacion) {
         Double num = Double.valueOf(numero);
 
@@ -97,11 +117,21 @@ public class Calculos {
         return memoria = String.valueOf(resultado);
     }
 
+    /**
+     * Método para calcular el porcentaje
+     * @param numero
+     * @return resultado
+     */
     public String calcularPorcentaje(String numero) {
         Double num1 = Double.valueOf(numero);
-        return String.valueOf(num1 / 100);
+        return memoria = String.valueOf(num1 / 100);
     }
 
+    /**
+     * Método para controlar que un valor sea numérico
+     * @param entrada
+     * @return 
+     */
     public boolean isNumeric(String entrada) {
         try {
             Integer.valueOf(entrada);
@@ -111,6 +141,14 @@ public class Calculos {
         }
     }
 
+    /**
+     * Método que hace las conversiones
+     * @param modo
+     * @param valor
+     * @param origen
+     * @param destino
+     * @return resultado
+     */
     public String conversion(String modo, String valor, String origen, String destino) {
         String resultado = "";
 
@@ -129,11 +167,19 @@ public class Calculos {
         historial.guardarHistorial(modo, valor, origen, destino, resultado);
         return resultado;
     }
-
+    
+    /**
+     * Getter memoria
+     * @return 
+     */
     public String getMemoria() {
         return memoria;
     }
 
+    /**
+     * Setter memoria
+     * @param memoria 
+     */
     public void setMemoria(String memoria) {
         this.memoria = memoria;
     }
@@ -188,10 +234,12 @@ public class Calculos {
             conn.connect();
             int code = conn.getResponseCode();
 
+            //Si devuelve otro codigo es que ha dado error
             if (code != 200) {
                 System.out.println("Request no exitosa");
             } else {
                 sc = new Scanner(url.openStream());
+                //Metemos en un String la request (en forma de Json)
                 while (sc.hasNext()) {
                     json += sc.nextLine();
                 }
@@ -204,6 +252,10 @@ public class Calculos {
         return json;
     }
 
+    /**
+     * 
+     * @param memoriaEx 
+     */
     public void setMemoriaExp(String memoriaEx) {
         memoriaExp = memoriaEx;
     }
@@ -239,10 +291,18 @@ public class Calculos {
         return String.valueOf((valorEntrada * factorOrigen) / factorDestino);
     }
 
+    /**
+     * Método para borrar el historial
+     */
     public void borrarHistorial() {
         historial.borrarHistorial();
     }
 
+    /**
+     * Método para  obtener el historial
+     * @param tipo
+     * @return 
+     */
     public ObservableList<String> getHistorial(String tipo) {
         return historial.getHistorial(tipo);
     }

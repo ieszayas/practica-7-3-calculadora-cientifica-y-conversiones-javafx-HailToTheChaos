@@ -38,16 +38,26 @@ public class OpcionesDivisaController implements Initializable {
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
     }
 
+    /**
+     * Recupera los datos
+     * @return 
+     */
     public static ObservableList<String> getDatos() {
         return lista;
     }
 
+    /**
+     * Añade a la lista los items seleccionados
+     * @param event 
+     */
     @FXML
     private void ok(ActionEvent event) {
         lista = FXCollections.observableArrayList();

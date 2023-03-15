@@ -16,6 +16,10 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * @author Jaime
+ */
 public class PrimaryController implements Initializable {
 
     private Modelo.Calculos calculos;
@@ -193,7 +197,6 @@ public class PrimaryController implements Initializable {
      * Método que hace los cálculos despues de darle a igual
      */
     private void equal() {
-        System.out.println(this.operacion);
         if (flagExponencial) {
             String res = calculos.calculoExp(resultado.getText());
             borrarPantalla();
